@@ -275,7 +275,7 @@ p {
 
 .quiz-progress.right {
 	left: 50px;
-	bottom: 50%;
+	bottom: calc(50% + 1px);
 	transform: translateY(50%);
 }
 
