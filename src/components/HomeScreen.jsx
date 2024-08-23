@@ -8,8 +8,10 @@ function HomeScreen({ dispatch }) {
 					Welcome to the <br /> <strong>Front-end Quiz !</strong>
 				</h1>
 				<p className="home-welcome-desc">
-					Choose a subject to start the quiz. You will be asked a series of
-					multiple-choice questions. Good luck!
+					Choose a subject to start the quiz. You will be asked a series of{" "}
+					<strong style={{ color: "var(--color-btn)" }}>10</strong> multiple-choice
+					questions. <br />{" "}
+					<strong style={{ color: "var(--color-text)" }}>Good luck!</strong>
 				</p>
 			</div>
 			<div className="home-subject">

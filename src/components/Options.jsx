@@ -1,16 +1,16 @@
 import PropTypes from "prop-types";
-// import SuccessSound from "../assets/success.mp3";
-// import FailSound from "../assets/fail.mp3";
+import SuccessSound from "../assets/success.mp3";
+import FailSound from "../assets/fail.mp3";
 
 const letters = ["A", "B", "C", "D"];
 
 function Options({ userAnswer, dispatch, question }) {
 	const hasAnswered = userAnswer !== null;
 
-	// if (hasAnswered) {
-	// 	const audio = new Audio(question.answer === userAnswer ? SuccessSound : FailSound);
-	// 	audio.play();
-	// }
+	if (hasAnswered) {
+		const audio = new Audio(question.answer === userAnswer ? SuccessSound : FailSound);
+		audio.play();
+	}
 
 	return (
 		<div className="options">

@@ -130,6 +130,7 @@ function App() {
 					<QuizScreen
 						questions={questions}
 						subject={subject}
+						subjects={subjects}
 						questionIndex={questionIndex}
 						dispatch={dispatch}
 						userAnswer={userAnswer}
@@ -138,7 +139,12 @@ function App() {
 					/>
 				)}
 				{status === "finished" && (
-					<ResultScreen subject={subject} subjects={subjects} dispatch={dispatch} />
+					<ResultScreen
+						subject={subject}
+						subjects={subjects}
+						numCorrect={numCorrect}
+						dispatch={dispatch}
+					/>
 				)}
 			</Main>
 		</div>
