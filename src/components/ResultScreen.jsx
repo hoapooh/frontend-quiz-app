@@ -1,12 +1,14 @@
-import PropTypes from "prop-types";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 import Congrats from "../assets/congrats.mp3";
 import uhoh from "../assets/eh-oh.mp3";
+import useQuiz from "../hooks/useQuiz";
 
 const languages = ["HTML", "CSS", "JavaScript", "React"];
 
-function ResultScreen({ subjects, subject, numCorrect, dispatch }) {
+function ResultScreen() {
+	const { subjects, subject, numCorrect, dispatch } = useQuiz();
+
 	const { width, height } = useWindowSize();
 	const score = subjects[subject].points;
 	const highScore = subjects[subject].highScore;
@@ -257,12 +259,5 @@ function ResultScreen({ subjects, subject, numCorrect, dispatch }) {
 		</div>
 	);
 }
-
-ResultScreen.propTypes = {
-	subjects: PropTypes.object.isRequired,
-	subject: PropTypes.number.isRequired,
-	numCorrect: PropTypes.number.isRequired,
-	dispatch: PropTypes.func.isRequired,
-};
 
 export default ResultScreen;

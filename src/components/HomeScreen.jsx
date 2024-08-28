@@ -1,6 +1,8 @@
-import PropTypes from "prop-types";
+import useQuiz from "../hooks/useQuiz";
 
-function HomeScreen({ dispatch }) {
+function HomeScreen() {
+	const { dispatch } = useQuiz();
+
 	return (
 		<div className="home">
 			<div className="home-welcome">
@@ -43,9 +45,5 @@ function HomeScreen({ dispatch }) {
 		</div>
 	);
 }
-
-HomeScreen.propTypes = {
-	dispatch: PropTypes.func.isRequired,
-};
 
 export default HomeScreen;

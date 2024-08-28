@@ -1,20 +1,24 @@
-import PropTYpes from "prop-types";
 import Options from "./Options";
 import NextButton from "./NextButton";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import useQuiz from "../hooks/useQuiz";
 
 const languages = ["HTML", "CSS", "JavaScript", "React"];
 
-function QuizScreen({
-	questions,
-	subject,
-	subjects,
-	dispatch,
-	questionIndex,
-	userAnswer,
-	numCorrect,
-	numWrong,
-}) {
+function QuizScreen() {
+	const {
+		questions,
+		subject,
+		subjects,
+		dispatch,
+		questionIndex,
+		userAnswer,
+		numCorrect,
+		numWrong,
+	} = useQuiz();
+
+	const numQuestions = questions.length;
+
 	return (
 		<div className="quiz">
 			<p className="quiz-title">
@@ -36,7 +40,7 @@ function QuizScreen({
 			<div>
 				<progress
 					value={numCorrect}
-					max={questions.length}
+					max={numQuestions}
 					className="quiz-progress right float"
 				/>
 				<p className="quiz-text correct">Correct Answer</p>
@@ -44,28 +48,24 @@ function QuizScreen({
 			<div>
 				<progress
 					value={numWrong}
-					max={questions.length}
+					max={numQuestions}
 					className="quiz-progress wrong float"
 				/>
 				<p className="quiz-text wrong">Wrong Answer</p>
 			</div>
-			<Options
-				userAnswer={userAnswer}
-				dispatch={dispatch}
-				question={questions.at(questionIndex)}
-			/>
+			<Options />
 
 			<div className="quiz-footer">
 				<div style={{ width: 80, height: 80 }}>
 					{/* <progress
 						value={questionIndex + Number(userAnswer !== null)}
-						max={questions.length}
+						max={numQuestions}
 						className="quiz-progress"
 					/>{" "}
-					{questionIndex + 1} / {questions.length} */}
+					{questionIndex + 1} / {numQuestions} */}
 					<CircularProgressbar
 						value={questionIndex + Number(userAnswer !== null)}
-						maxValue={questions.length}
+						maxValue={numQuestions}
 						text={`${(questionIndex + Number(userAnswer !== null)) * 10}%`}
 						strokeWidth={8}
 						styles={buildStyles({
@@ -76,26 +76,10 @@ function QuizScreen({
 						})}
 					/>
 				</div>
-				<NextButton
-					userAnswer={userAnswer}
-					dispatch={dispatch}
-					questionIndex={questionIndex}
-					questions={questions}
-				/>
+				<NextButton />
 			</div>
 		</div>
 	);
 }
-
-QuizScreen.propTypes = {
-	questions: PropTYpes.array.isRequired,
-	subject: PropTYpes.number.isRequired,
-	subjects: PropTYpes.object.isRequired,
-	dispatch: PropTYpes.func.isRequired,
-	questionIndex: PropTYpes.number.isRequired,
-	userAnswer: PropTYpes.number,
-	numCorrect: PropTYpes.number.isRequired,
-	numWrong: PropTYpes.number.isRequired,
-};
 
 export default QuizScreen;

@@ -1,10 +1,14 @@
-import PropTypes from "prop-types";
 import SuccessSound from "../assets/success.mp3";
 import FailSound from "../assets/fail.mp3";
+import useQuiz from "../hooks/useQuiz";
 
 const letters = ["A", "B", "C", "D"];
 
-function Options({ userAnswer, dispatch, question }) {
+function Options() {
+	const { userAnswer, questionIndex, dispatch, questions } = useQuiz();
+
+	const question = questions.at(questionIndex);
+
 	const hasAnswered = userAnswer !== null;
 
 	if (hasAnswered) {
@@ -33,12 +37,6 @@ function Options({ userAnswer, dispatch, question }) {
 		</div>
 	);
 }
-
-Options.propTypes = {
-	userAnswer: PropTypes.number,
-	dispatch: PropTypes.func.isRequired,
-	question: PropTypes.object.isRequired,
-};
 
 const getButtonClass = (index, question, userAnswer) => {
 	if (index === question.answer) {

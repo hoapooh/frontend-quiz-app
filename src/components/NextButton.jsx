@@ -1,6 +1,7 @@
-import PropTypes from "prop-types";
+import useQuiz from "../hooks/useQuiz";
 
-function NextButton({ userAnswer, dispatch, questions, questionIndex }) {
+function NextButton() {
+	const { userAnswer, dispatch, questions, questionIndex } = useQuiz();
 	const hasAnswered = userAnswer === null;
 
 	const completed = questionIndex === questions.length - 1;
@@ -31,12 +32,5 @@ function NextButton({ userAnswer, dispatch, questions, questionIndex }) {
 		</div>
 	);
 }
-
-NextButton.propTypes = {
-	userAnswer: PropTypes.number,
-	dispatch: PropTypes.func.isRequired,
-	questions: PropTypes.array.isRequired,
-	questionIndex: PropTypes.number.isRequired,
-};
 
 export default NextButton;
